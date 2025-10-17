@@ -7,7 +7,11 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+   origin: "*",              // Cho phép mọi domain (có thể thay bằng domain web chính của cậu)
+  methods: ["GET", "POST"], // Chỉ cho phép 2 kiểu request này
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json({ limit: "10mb" }));
 
 const IMGBB_API_KEY = process.env.IMGBB_API_KEY;
